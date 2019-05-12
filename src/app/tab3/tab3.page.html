@@ -1,0 +1,59 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-select interface="popover" placeholder="Выберите комнату" slot="end" [(ngModel)]="selectRoom">
+            <ion-select-option *ngFor="let room of rooms[0]" [value]="room.id">{{room.name}}</ion-select-option>
+
+        </ion-select>
+        <!--        <ion-icon name="add" *ngIf = "listLevel" (click)="newOrder()" slot="end"></ion-icon>
+                <ion-icon name="send" *ngIf = "listLevel" (click)="sendOrder()" slot="end"></ion-icon>-->
+        <!-- Icons -->
+        <ion-button *ngIf = "listLevel" slot="end" (click)="newOrder()">
+            <ion-icon  name="add"></ion-icon>
+        </ion-button>
+        <!-- Icons -->
+        <ion-button *ngIf = "listLevel" slot="end" (click)="sendOrder()">
+            <ion-icon  name="send"></ion-icon>
+
+        </ion-button>
+
+        <ion-title>
+            Новый заказ
+        </ion-title>
+
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-list *ngIf = "groupLevel">
+        <ion-item *ngFor="let g of menuGroups[0]" (click)="itemClick(g.id)">
+            <ion-label >{{g.name}}</ion-label >
+
+
+        </ion-item>
+
+    </ion-list>
+
+    <ion-list *ngIf = "listLevel" id="list">
+        <ion-item *ngFor="let i of menuList[0]; let p = index" >
+            <div class="ion-text-start">
+                {{i.name}}
+            </div>
+            <ion-input type="number"  slot="end" style = 'background-color: silver' (ngModelChange)="changeQtx($event, i.id, i.price, i.name, i.groupid)" [(ngModel)]="values[p]"></ion-input>
+            <div slot="end" style='width: 100px'>
+                {{i.price}} руб.
+            </div>
+            <!--            <ion-label slot="start">{{i.name}}</ion-label>
+                        <ion-label slot="end">{{i.price}} руб.</ion-label >-->
+        </ion-item>
+
+    </ion-list>
+
+
+
+
+</ion-content>
+
+<ion-footer>
+    <h3>Стоимость заказа : {{orderAmount}} руб.</h3>
+</ion-footer>

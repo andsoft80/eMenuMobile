@@ -1,0 +1,7 @@
+{
+  "name": "eMenu",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

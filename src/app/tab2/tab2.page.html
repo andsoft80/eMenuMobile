@@ -1,0 +1,55 @@
+<ion-header>
+    <ion-toolbar>
+<!--        <ion-icon name="arrow-back" *ngIf = "listLevel" (click)="listBack()" slot="start"></ion-icon>
+        <ion-icon name="arrow-back" *ngIf = "itemLevel" (click)="itemBack()" slot="start"></ion-icon>-->
+        <ion-button *ngIf = "listLevel" slot="start" (click)="listBack()">
+            <ion-icon  name="arrow-back"></ion-icon>
+        </ion-button>      
+
+        <ion-button *ngIf = "itemLevel" slot="start" (click)="itemBack()">
+            <ion-icon  name="arrow-back"></ion-icon>
+        </ion-button>  
+
+
+        <ion-title>
+            Меню локации
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-list *ngIf = "groupLevel">
+        <ion-item *ngFor="let g of menuGroups[0]" (click)="itemClick(g.id)">
+            <ion-label >{{g.name}}</ion-label >
+
+
+        </ion-item>
+
+    </ion-list>
+
+    <ion-list *ngIf = "listLevel">
+        <ion-item *ngFor="let i of menuList[0]" (click)="itemListClick(i.id, i.name, i.node, i.price)">
+            <div class="ion-text-start">
+                {{i.name}}
+            </div>
+            <div slot="end" >
+                {{i.price}} руб.
+            </div>
+            <!--            <ion-label slot="start">{{i.name}}</ion-label>
+                        <ion-label slot="end">{{i.price}} руб.</ion-label >-->
+        </ion-item>
+
+    </ion-list>
+    <ion-card *ngIf = "itemLevel">
+        <ion-card-title>{{itemname}}</ion-card-title>
+        <ion-card-content>
+            <p>Описание: {{itemnode}}</p>
+            <p>Цена: {{itemprice}} руб.</p>
+
+        </ion-card-content>
+    </ion-card>
+
+
+
+</ion-content>
